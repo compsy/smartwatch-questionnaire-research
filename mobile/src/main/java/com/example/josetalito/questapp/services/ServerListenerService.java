@@ -32,9 +32,9 @@ public class ServerListenerService extends WearableListenerService {
      ************ Google Api Client related variables.
      *************************************************/
     /**
-     * Path for DataItems.
+     * Path for DataItems for phone
      */
-    private static final String COUNT_KEY = "com.example.key.count";
+    private static final String DATA_TO_PHONE = "path/to/phone";
     /**
      * Google Api Client. Interface to use the Wearable Api (from Google Play Services).
      */
@@ -58,18 +58,18 @@ public class ServerListenerService extends WearableListenerService {
      */
     @Override
     public void onDataChanged(DataEventBuffer dataEvents) {
-        Log.i(TAG, "onDataChanged called. Answers received from the watch!");
+        Log.i(TAG, "onDataChanged called.");
         for(DataEvent dataEvent: dataEvents) {
             if (dataEvent.getType() == DataEvent.TYPE_CHANGED) {
-                if ("/path/to/data".equals(dataEvent.getDataItem().getUri().getPath())) {
-                    /*DataMapItem dataMapItem = DataMapItem.fromDataItem(dataEvent.getDataItem());
+                // Receiving answers from the wearable and sending them to the API
+                if (DATA_TO_PHONE.equals(dataEvent.getDataItem().getUri().getPath())) {
+                    Log.i(TAG, "Answers received on the phone.");
+                    DataMapItem dataMapItem = DataMapItem.fromDataItem(dataEvent.getDataItem());
                     String questionnaireKey = dataMapItem.getDataMap().getString("QUESTIONNAIRE_KEY");
                     byte[] solutionsBytes = dataMapItem.getDataMap().getByteArray("answers");
                     Solutions solutions = SerializationUtils.deserialize(solutionsBytes);
-                    // TODO: Send to webapp
-                    RestClient restClient = new RestClient();
-                    restClient.post(solutions);*/
-                    Log.i(TAG, "DataChange received on phone Service.");
+                    // Sending to the API
+                    new RestClient().execute(solutions);
                 }
             }
         }

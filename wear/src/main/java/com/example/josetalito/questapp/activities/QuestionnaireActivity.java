@@ -53,7 +53,7 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
     /**
      * Debugging tag for logging messages.
      */
-    private static final String TAG = "WearQuesActivity";
+    private static final String TAG = "QuestionnaireActivity";
 
     /**
      * Google Api Client. Interface to use the Wearable Api (from Google Play Services).
@@ -67,6 +67,11 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
      *  Storage of the solutions.
      */
     private Solutions solutions;
+
+    /**
+     * Path for DataItems for phone.
+     */
+    private static final String DATA_TO_PHONE = "path/to/phone";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +168,7 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
         NotificationManagerCompat.from(this).cancel(NOTIFICATION_ID);
         // And now send the answers to the handheld
         if (mGoogleApiClient.isConnected()) {
-            PutDataMapRequest dataMapRequest = PutDataMapRequest.create("/path/to/data");
+            PutDataMapRequest dataMapRequest = PutDataMapRequest.create(DATA_TO_PHONE);
             dataMapRequest.getDataMap().putString("QUESTIONNAIRE_KEY", q.getQuestionnaireKey());
 
             // Serializing the questionnaire

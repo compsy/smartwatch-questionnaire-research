@@ -108,7 +108,7 @@ public class MainActivity extends Activity implements DelayedConfirmationView.De
         int random = 0 + (int)(Math.random() * 1337);
         questionnaire.setQuestionnaireKey(String.valueOf(random));
         NOTIFICATION_ID = Integer.getInteger(questionnaire.getQuestionnaireKey(), -1);
-        random++;
+        Log.i(TAG, "Random: " + random + ", NOTIFICATION_ID: " + NOTIFICATION_ID);
 
         Intent questionnaireActivityIntent = new Intent(this, QuestionnaireActivity.class);
         questionnaireActivityIntent.putExtra("questionnaire", questionnaire);

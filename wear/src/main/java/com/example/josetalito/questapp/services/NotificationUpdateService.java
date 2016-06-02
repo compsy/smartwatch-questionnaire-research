@@ -45,9 +45,10 @@ public class NotificationUpdateService extends WearableListenerService {
      ************ Google Api Client related variables.
      *************************************************/
     /**
-     * Path for DataItems.
+     * Path for DataItems for wearable.
      */
-    private static final String COUNT_KEY = "com.example.key.count";
+    private static final String DATA_TO_WATCH = "path/to/watch";
+
     /**
      * Google Api Client. Interface to use the Wearable Api (from Google Play Services).
      */
@@ -80,8 +81,9 @@ public class NotificationUpdateService extends WearableListenerService {
     public void onDataChanged(DataEventBuffer dataEvents) {
         Log.i(TAG, "onDataChanged called.");
         for(DataEvent dataEvent: dataEvents) {
+            // We are receiving a questionnaire
             if (dataEvent.getType() == DataEvent.TYPE_CHANGED) {
-                if ("/path/to/data".equals(dataEvent.getDataItem().getUri().getPath())) {
+                if (DATA_TO_WATCH.equals(dataEvent.getDataItem().getUri().getPath())) {
                     DataMapItem dataMapItem = DataMapItem.fromDataItem(dataEvent.getDataItem());
                     String title = dataMapItem.getDataMap().getString("NOTIFICATION_TITLE");
                     String content = dataMapItem.getDataMap().getString("NOTIFICATION_CONTENT");
@@ -153,7 +155,7 @@ public class NotificationUpdateService extends WearableListenerService {
         @Override
         public void onConnected(Bundle bundle) {
             final Uri dataItemUri =
-                    new Uri.Builder().scheme(WEAR_URI_SCHEME).path("/path/to/data").build();
+                    new Uri.Builder().scheme(WEAR_URI_SCHEME).path(DATA_TO_WATCH).build();
             if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Deleting Uri: " + dataItemUri.toString());
             }
@@ -163,20 +165,20 @@ public class NotificationUpdateService extends WearableListenerService {
 
         @Override
         public void onConnectionSuspended(int i) {
-            Log.d(TAG, "onConnectionSuspended");
+            Log.i(TAG, "onConnectionSuspended");
         }
 
         @Override
         public void onResult(DataApi.DeleteDataItemsResult deleteDataItemsResult) {
             if (!deleteDataItemsResult.getStatus().isSuccess()) {
-                Log.e(TAG, "dismissWearableNotification(): failed to delete DataItem");
+                Log.i(TAG, "dismissWearableNotification(): failed to delete DataItem");
             }
             mGoogleApiClient.disconnect();
         }
 
         @Override
         public void onConnectionFailed(ConnectionResult connectionResult) {
-            Log.d(TAG, "onConnectionFailed");
+            Log.i(TAG, "onConnectionFailed");
         }
     }
 }
