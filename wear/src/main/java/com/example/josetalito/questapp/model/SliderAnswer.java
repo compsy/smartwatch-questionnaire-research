@@ -1,6 +1,6 @@
 package com.example.josetalito.questapp.model;
 
-import com.example.josetalito.questapp.TypeOfQuestion;
+import com.example.common.TypeOfQuestion;
 
 import java.util.ArrayList;
 

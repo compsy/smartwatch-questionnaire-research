@@ -12,6 +12,7 @@
     <string name="bttn_ok">OK!</string>
     <string name="bttn_not_ok">X</string>
     <string name="bttn_unsure">"?"</string>
-    <string name="not_validated">Not all mandatory questions were answered.</string>
+    <!-- Validation -->
+    <string name="not_validated">You have remaining questions.</string>
 
 </resources>
