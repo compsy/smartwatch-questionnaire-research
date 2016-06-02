@@ -78,7 +78,7 @@ public class FinishFragment extends Fragment {
                     public void run() {
                         toast.cancel();
                     }
-                }, 70);
+                }, 250);
                 Log.i(TAG, "The questionnaire could not be validated.");
             }
         }
