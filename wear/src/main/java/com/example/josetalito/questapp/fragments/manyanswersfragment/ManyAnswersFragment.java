@@ -43,6 +43,7 @@ public class ManyAnswersFragment extends Fragment implements WearableListView.Cl
 
         Bundle bd = this.getArguments();
         Question question = (Question) bd.getSerializable("question");
+        questionID = question.getID();
 
         ArrayList<String> quest_answers = (ArrayList<String>) question.getChoices();
         int limit = quest_answers.size(); int i;
@@ -52,7 +53,6 @@ public class ManyAnswersFragment extends Fragment implements WearableListView.Cl
         }
         wearView.setAdapter(new ListViewAdapter(this.getActivity().getApplicationContext(), choices));
         wearView.setClickListener(this);
-        questionID = this.getArguments().getInt("questionid");
         return view;
     }
 

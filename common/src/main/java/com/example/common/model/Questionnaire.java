@@ -1,5 +1,7 @@
 package com.example.common.model;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,6 +12,11 @@ import java.util.Date;
  * Created by Josetalito on 15/04/2016.
  */
 public class Questionnaire implements Serializable {
+
+    /**
+     * Debugging tag for logging messages.
+     */
+    private static final String TAG = "Questionnaire";
 
     private String questionnaireKey;
     private ArrayList<Question> questions;
@@ -29,12 +36,15 @@ public class Questionnaire implements Serializable {
         return questions;
     }
 
-    public void setQuestion(ArrayList<Question> questions) {
-        this.questions = questions;
+    public void setQuestion(ArrayList<Question> questions) { this.questions = questions;
     }
 
     public void addQuestion(Question question) {
+        Log.i(TAG, "Questionnaire size: " + questions.size());
+        int theID = questions.size();
+        question.setID(theID+1);
         questions.add(question);
+        Log.i(TAG, "QuestionID: " + (theID + 1));
     }
 
     public String getQuestionnaireKey() {

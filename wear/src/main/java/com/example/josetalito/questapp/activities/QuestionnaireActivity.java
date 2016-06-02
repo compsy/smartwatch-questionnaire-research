@@ -6,7 +6,6 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
@@ -17,7 +16,6 @@ import android.support.v4.util.LruCache;
 import android.support.wearable.view.CardFragment;
 import android.support.wearable.view.DotsPageIndicator;
 import android.support.wearable.view.FragmentGridPagerAdapter;
-import android.support.wearable.view.GridPagerAdapter;
 import android.support.wearable.view.GridViewPager;
 import android.util.Log;
 import android.view.View;
@@ -62,13 +60,13 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
      */
     private GoogleApiClient mGoogleApiClient;
 
-    Questionnaire q;
+    private Questionnaire q;
     private int NOTIFICATION_ID;
 
     /**
      *  Storage of the solutions.
      */
-    Solutions solutions;
+    private Solutions solutions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,9 +110,6 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
         // we create the solutions array to store the answers
         solutions = new Solutions(q.getQuestionnaireKey(), q.getQuestions().size());
 
-        // we register a potential solution for the current questionnaire
-        setSolutions(new Solutions(q.getQuestionnaireKey(), NUM_ROWS));
-
         int i;
         for(i = 0; i < NUM_ROWS ; i++) {
             // get the number of choices per question
@@ -157,7 +152,7 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
 
     @Override
     public void onDataPass(int questionID, String data) {
-        solutions.getSolutions().put(questionID, data);
+        getSolutions().getSolutions().put(questionID, data);
         Log.i(TAG, "onDataPass called. Question: " + questionID + " with choice: " + data);
     }
 
@@ -172,7 +167,7 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
             dataMapRequest.getDataMap().putString("QUESTIONNAIRE_KEY", q.getQuestionnaireKey());
 
             // Serializing the questionnaire
-            byte[] solutionsBytes = SerializationUtils.serialize(solutions);
+            byte[] solutionsBytes = SerializationUtils.serialize(getSolutions());
             dataMapRequest.getDataMap().putByteArray("answers", solutionsBytes);
 
             dataMapRequest.setUrgent(); // We want it to be delivered straight away
@@ -183,6 +178,14 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
             Log.e(TAG, "No connection to handheld available!");
         }
         Log.i(TAG, "Notification removed.");
+    }
+
+    public Questionnaire getQ() {
+        return q;
+    }
+
+    public Solutions getSolutions() {
+        return solutions;
     }
 
 
@@ -216,7 +219,7 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
                 CardFragment cd = new CardFragment();
                 question = q.getQuestions().get(i);
 
-                bd.putString(CardFragment.KEY_TITLE, "Question " + (i+1));
+                bd.putString(CardFragment.KEY_TITLE, "Question " + question.getID());
                 bd.putString(CardFragment.KEY_TEXT, question.toString());
                 bd.putSerializable("question", question);
 
@@ -380,7 +383,7 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
 
             @Override
             protected Drawable doInBackground(Integer... params) {
-                Log.d(TAG, "Loading asset 0x" + Integer.toHexString(params[0]));
+                Log.i(TAG, "Loading asset 0x" + Integer.toHexString(params[0]));
                 return context.getResources().getDrawable(params[0]);
             }
         }

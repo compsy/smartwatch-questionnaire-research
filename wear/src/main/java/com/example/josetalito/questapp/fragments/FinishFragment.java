@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.josetalito.questapp.R;
+import com.example.josetalito.questapp.activities.QuestionnaireActivity;
 
 /**
  * Created by Josetalito on 19/05/2016.
@@ -37,11 +38,11 @@ public class FinishFragment extends Fragment {
     }
 
     private boolean validateQuestionnaire(View v) {
-        boolean validation = false;
-        Log.i(TAG, "Questionnaire validated.");
-        // TODO: Logic of validation
-
-        return validation;
+        int NumberOfQuestions = ((QuestionnaireActivity)getActivity()).getQ().getQuestions().size();
+        int NumberOfSolutions = ((QuestionnaireActivity)getActivity()).getSolutions().getSolutions().size();
+        Log.i(TAG, "Validating questionnaire... " +
+            "Number of questions: " + NumberOfQuestions + ", number of solutions: " + NumberOfSolutions);
+        return NumberOfQuestions == NumberOfSolutions ? true : false;
     }
 
     private void finishQuestionnaireActivity() {
