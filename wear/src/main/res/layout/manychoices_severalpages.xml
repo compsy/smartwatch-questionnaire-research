@@ -1,0 +1,54 @@
+<android.support.wearable.view.BoxInsetLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_color"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:padding="15dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        app:layout_box="all">
+
+
+        <TextView
+            android:id="@+id/first_choice"
+            android:layout_gravity="top|center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|top"
+            android:text=""
+            android:textSize="15dp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/circular_button_pressed">
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/second_choice"
+            android:layout_gravity="center|center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|center"
+            android:text=""
+            android:textSize="15dp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/circular_button_pressed">
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/third_choice"
+            android:layout_gravity="bottom|center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|center"
+            android:text=""
+            android:textSize="15dp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/circular_button_pressed">
+        </TextView>
+    </FrameLayout>
+</android.support.wearable.view.BoxInsetLayout>

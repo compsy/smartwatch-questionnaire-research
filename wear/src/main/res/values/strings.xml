@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">QApp</string>
+    <string name="main_activity_title_text">QUESTIONNAIRES</string>
+    <string name="btn_make_questionnaire">Fill in questionnaire</string>
+    <string name="notification_title">QApp - New questionnaire</string>
+    <string name="notification_content">Swap to right to launch the app</string>
+    <string name="action_launch_activity">Launch app</string>
+    <string name="fill_questionnaire">Fill questionnaire</string>
+
+    <!-- Fragments -->
+    <!-- YesNo view -->
+    <string name="bttn_ok">OK!</string>
+    <string name="bttn_not_ok">X</string>
+    <string name="bttn_unsure">"?"</string>
+    <string name="not_validated">Not all mandatory questions were answered.</string>
+
+</resources>

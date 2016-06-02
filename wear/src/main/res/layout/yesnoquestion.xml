@@ -1,0 +1,73 @@
+<android.support.wearable.view.BoxInsetLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_color"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:padding="15dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        app:layout_box="all">
+
+        <Button
+            android:id="@+id/yes_bttn"
+            android:layout_gravity="center|left"
+            android:layout_marginRight="10dp"
+            android:onClick="registerSelection"
+
+            android:text="@string/bttn_ok"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bttn_ok_itr6"
+            android:shadowColor="#12F002"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="0"
+            />
+
+        <Button
+            android:id="@+id/no_bttn"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="10dp"
+            android:onClick="registerSelection"
+
+            android:text="@string/bttn_not_ok"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bttn_cancel_itr6"
+            android:shadowColor="#F04000"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="0"
+            />
+
+        <Button
+            android:id="@+id/unsure_bttn"
+            android:layout_gravity="center|center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:onClick="registerSelection"
+
+            android:text="@string/bttn_unsure"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/bttn_equal_itr6"
+            android:shadowColor="#0030F0"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="0"
+            />
+    </FrameLayout>
+</android.support.wearable.view.BoxInsetLayout>
