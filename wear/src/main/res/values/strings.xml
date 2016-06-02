@@ -14,5 +14,6 @@
     <string name="bttn_unsure">"?"</string>
     <!-- Validation -->
     <string name="not_validated">You have remaining questions.</string>
+    <string name="button_finish">SEND!</string>
 
 </resources>

@@ -17,7 +17,7 @@
             android:layout_gravity="center|center"
             android:onClick="validateQuestionnaire"
 
-            android:text="OK!"
+            android:text="@string/button_finish"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
 
