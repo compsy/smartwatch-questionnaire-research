@@ -58,6 +58,7 @@ public class NotificationUpdateService extends WearableListenerService {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.i(TAG, "Wearable listener service started.");
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Wearable.API)
                 .build();

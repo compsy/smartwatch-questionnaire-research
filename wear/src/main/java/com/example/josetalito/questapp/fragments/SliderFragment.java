@@ -43,14 +43,16 @@ public class SliderFragment extends Fragment implements SeekBar.OnSeekBarChangeL
         Bundle bd = this.getArguments();
         Question question = (Question) bd.getSerializable("question");
         int maxValue = Integer.parseInt(question.getChoices().get(1));
+        questionID = question.getID();
 
         seekBar.setMax(maxValue);
         seekBar.setClickable(true);
         seekBar.setFocusable(true);
         seekBar.setEnabled(true);
+
         textView = (TextView) view.findViewById(R.id.current_value);
         textView.setText(String.valueOf(maxValue/2) + "/" + seekBar.getMax());
-        getActivity().runOnUiThread(new Runnable() {
+        /*getActivity().runOnUiThread(new Runnable() {
             public void run() {
                 seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -85,22 +87,21 @@ public class SliderFragment extends Fragment implements SeekBar.OnSeekBarChangeL
                     }
                 });
             }
-        });
-        //seekBar.setOnSeekBarChangeListener(this);
-        questionID = question.getID();
+        });*/
+        seekBar.setOnSeekBarChangeListener(this);
         return view;
     }
 
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         textView.setText(progress + "/" + seekBar.getMax());
         this.progress = progress;
-        //Log.i(TAG, "onProgressChanged - slider");
+        Log.i(TAG, "onProgressChanged - slider");
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
         textView.setText(progress + "/" + seekBar.getMax());
-        //Log.i(TAG, "onStartTrackingTouch - slider");
+        Log.i(TAG, "onStartTrackingTouch - slider");
     }
 
 
@@ -142,7 +143,7 @@ public class SliderFragment extends Fragment implements SeekBar.OnSeekBarChangeL
         super.onAttach(context);
         Activity a;
         if (context instanceof Activity){
-            Log.i(TAG, "dataPasser created in FewAnswersFragment.");
+            Log.i(TAG, "dataPasser created in SliderFragment.");
             a = (Activity) context;
             dataPasser = (OnDataPass) a;
         }

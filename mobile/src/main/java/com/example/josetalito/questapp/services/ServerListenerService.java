@@ -43,6 +43,7 @@ public class ServerListenerService extends WearableListenerService {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.i(TAG, "Phone listener service created.");
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Wearable.API)
                 .build();
@@ -61,13 +62,14 @@ public class ServerListenerService extends WearableListenerService {
         for(DataEvent dataEvent: dataEvents) {
             if (dataEvent.getType() == DataEvent.TYPE_CHANGED) {
                 if ("/path/to/data".equals(dataEvent.getDataItem().getUri().getPath())) {
-                    DataMapItem dataMapItem = DataMapItem.fromDataItem(dataEvent.getDataItem());
+                    /*DataMapItem dataMapItem = DataMapItem.fromDataItem(dataEvent.getDataItem());
                     String questionnaireKey = dataMapItem.getDataMap().getString("QUESTIONNAIRE_KEY");
                     byte[] solutionsBytes = dataMapItem.getDataMap().getByteArray("answers");
                     Solutions solutions = SerializationUtils.deserialize(solutionsBytes);
                     // TODO: Send to webapp
                     RestClient restClient = new RestClient();
-                    restClient.post(solutions);
+                    restClient.post(solutions);*/
+                    Log.i(TAG, "DataChange received on phone Service.");
                 }
             }
         }

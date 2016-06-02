@@ -21,8 +21,12 @@
             android:max="100"
             android:thumbTint="@color/darkblue"
             android:progressTint="@color/darkblue"
-            android:backgroundTint="@color/blue"
-            android:secondaryProgressTint="@color/darkblue" />
+            android:secondaryProgressTint="@color/darkblue"
+            android:splitTrack="false"
+            android:foregroundTintMode="add"
+            android:indeterminate="false"
+            android:progressBackgroundTint="@color/black"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/current_value"

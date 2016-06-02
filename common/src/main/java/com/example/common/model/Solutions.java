@@ -1,5 +1,7 @@
 package com.example.common.model;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -10,6 +12,8 @@ import java.util.HashMap;
  * Created by Josetalito on 19/05/2016.
  */
 public class Solutions implements Serializable {
+
+    private static final String TAG = "Solutions";
 
     private String questionnaireKey;
 
@@ -24,6 +28,7 @@ public class Solutions implements Serializable {
     private HashMap<Integer, String> solutions;
 
     public Solutions(String questionnaireKey, int n) {
+        Log.i(TAG, "Solutions created");
         this.questionnaireKey = questionnaireKey;
         solutions = new HashMap<>(n);
     }

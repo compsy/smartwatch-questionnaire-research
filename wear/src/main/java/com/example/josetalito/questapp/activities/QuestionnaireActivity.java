@@ -62,7 +62,7 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
      */
     private GoogleApiClient mGoogleApiClient;
 
-    private Questionnaire q;
+    Questionnaire q;
     private int NOTIFICATION_ID;
 
     /**
@@ -108,6 +108,9 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
         }
         NUM_ROWS = q.getQuestions().size();
         QUEST_GRID = new int[NUM_ROWS][];
+
+        // we create the solutions array to store the answers
+        solutions = new Solutions(q.getQuestionnaireKey(), q.getQuestions().size());
 
         // we register a potential solution for the current questionnaire
         setSolutions(new Solutions(q.getQuestionnaireKey(), NUM_ROWS));
@@ -284,7 +287,7 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
             }
         };
 
-        // TODO: to change
+        /*// TODO: to change
         LruCache<Point, Drawable> mPageBackgrounds = new LruCache<Point, Drawable>(3) {
             @Override
             protected Drawable create(final Point page) {
@@ -305,7 +308,7 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
                 }
                 return GridPagerAdapter.BACKGROUND_NONE;
             }
-        };
+        };*/
 
         final int[] BG_IMAGES = new int[] {
                 R.color.background_color,
@@ -351,11 +354,11 @@ public class QuestionnaireActivity extends Activity implements OnDataPass {
             return mRowBackgrounds.get(row);
         }
 
-        // TODO
+        /*// TODO
         @Override
         public Drawable getBackgroundForPage(final int row, final int column) {
             return mPageBackgrounds.get(new Point(column, row));
-        }
+        }*/
 
         @Override
         public int getRowCount() {
